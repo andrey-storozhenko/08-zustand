@@ -5,7 +5,6 @@ const SidebarNotes = async () => {
     const tags = ["Work", "Personal", "Meeting", "Todo", "Shopping"];
     return (
         <>
-            <Link href="/notes/action/create">Create note</Link>
             <ul className={css.menuList}>
                 <li className={css.menuItem}>
                     <Link href={`/notes/filter/all`} className={css.menuLink}>

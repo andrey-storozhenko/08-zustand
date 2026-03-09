@@ -8,19 +8,20 @@ import {fetchNotes} from "../../../../lib/api";
 import { useDebouncedCallback } from 'use-debounce';
 import NoteList from "../../../../components/NoteList/NoteList";
 import Pagination from "../../../../components/Pagination/Pagination";
+import Link from "next/link";
 
 type Props = {
-  category?: string;
+  tag?: string;
 };
 
-export default function NotesClient({ category }: Props) {
+export default function NotesClient({ tag }: Props) {
 
     const [searchQuery, setSearchQuery] = useState("");
     const [page, setPage] = useState(1);
 
     const { data, isFetching } = useQuery({
-        queryKey: ["notes", searchQuery, page,category],
-        queryFn: () => fetchNotes(searchQuery, page,category),
+        queryKey: ["notes", searchQuery, page,tag],
+        queryFn: () => fetchNotes(searchQuery, page,tag),
         placeholderData: keepPreviousData,
     })
 
@@ -35,6 +36,7 @@ export default function NotesClient({ category }: Props) {
         <div className={css.app}>
             <header className={css.toolbar}>
                 <SearchBox query={searchQuery} updateSearchQuery={updateSearchQuery}></SearchBox>
+                <Link href="/notes/action/create">Create note</Link>
                 {(data?.totalPages ?? 0) > 1 && <Pagination
                     pageCount={data?.totalPages ?? 0}
                     currentPage={page - 1}

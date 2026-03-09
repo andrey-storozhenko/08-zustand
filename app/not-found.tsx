@@ -1,5 +1,6 @@
 
-import css from "././Home.module.css";
+import { Metadata } from "next";
+import css from "./Home.module.css";
 
 const NotFound = () => {
     return (
@@ -10,13 +11,12 @@ const NotFound = () => {
     );
 }
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Page not found - 404",
-  description: "The page you are searching doesn`t exist",
-  url: "https://notehub.com/not-found",
+  description: "The page you are searching does not exist",
   openGraph: {
     title: "Page not found - 404",
-    description: "The page you are searching doesn`t exis",
+    description: "The page you are searching does not exist",
     url: "https://notehub.com/not-found",
     images: [
       {
