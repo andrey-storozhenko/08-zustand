@@ -43,6 +43,7 @@ export default function NotesClient({ tag }: Props) {
             <header className={css.toolbar}>
                 <SearchBox query={inputValue} updateSearchQuery={handleSearch}></SearchBox>
                 <Link href="/notes/action/create">Create note</Link>
+                {/* Pagination uses 0-based indexing */}
                 {(data?.totalPages ?? 0) > 1 && <Pagination
                     pageCount={data?.totalPages ?? 0}
                     currentPage={page - 1}
