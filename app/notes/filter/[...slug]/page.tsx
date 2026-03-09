@@ -22,7 +22,7 @@ const NotesByCategory = async ({ params }: Props) => {
          <HydrationBoundary state={dehydrate(queryClient)}>
             <div>
                 <h1>Notes List</h1>
-                <NotesClient category={category} />
+                <NotesClient tag={category} />
             </div>
         </HydrationBoundary>
     );
