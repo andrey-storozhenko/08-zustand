@@ -17,6 +17,8 @@ type Props = {
 export default function NotesClient({ tag }: Props) {
 
     const [searchQuery, setSearchQuery] = useState("");
+    const [inputValue, setInputValue] = useState("");
+
     const [page, setPage] = useState(1);
 
     const { data, isFetching } = useQuery({
@@ -28,14 +30,18 @@ export default function NotesClient({ tag }: Props) {
     const updateSearchQuery = useDebouncedCallback(
         (value : string) => { 
             setSearchQuery(value);
-            setPage(1);
         },300
     );
+    const handleSearch = (value: string) => {
+        setInputValue(value); 
+        setPage(1);
+        updateSearchQuery(value);  
+    };
     
     return (
         <div className={css.app}>
             <header className={css.toolbar}>
-                <SearchBox query={searchQuery} updateSearchQuery={updateSearchQuery}></SearchBox>
+                <SearchBox query={inputValue} updateSearchQuery={handleSearch}></SearchBox>
                 <Link href="/notes/action/create">Create note</Link>
                 {(data?.totalPages ?? 0) > 1 && <Pagination
                     pageCount={data?.totalPages ?? 0}
